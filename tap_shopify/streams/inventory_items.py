@@ -10,7 +10,7 @@ from tap_shopify.streams.base import shopify_error_handling, RESULTS_PER_PAGE
 class InventoryItem(Stream):
     name = 'inventory_items'
     replication_object = shopify.InventoryItem
-    replication_key = 'created_at'
+    replication_key = 'updated_at'
 
     @shopify_error_handling
     def get_inventory_item(self, parent_object):

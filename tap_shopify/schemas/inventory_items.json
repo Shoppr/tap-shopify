@@ -63,7 +63,7 @@
         "string"
       ]
     },
-    "inventory_levels": {
+    "inventory_level": {
       "type": "object",
       "properties": {
         "inventory_item_id": {
@@ -89,10 +89,6 @@
             "null",
             "string"
           ]
-        },
-        "created_at": {
-          "type": ["null", "string"],
-          "format": "date-time"
         },
         "updated_at": {
           "type": ["null", "string"],
