@@ -10,7 +10,7 @@ from tap_shopify.streams.base import shopify_error_handling, RESULTS_PER_PAGE
 class InventoryItem(Stream):
     name = 'inventory_items'
     replication_object = shopify.InventoryItem
-    replication_key = 'updated_at'
+    replication_key = 'created_at'
 
     @shopify_error_handling
     def get_inventory_item(self, parent_object):
@@ -18,6 +18,12 @@ class InventoryItem(Stream):
             [str(x.inventory_item_id) for x in parent_object.variants]
         )
         return self.replication_object.find(ids = ids, limit = RESULTS_PER_PAGE)
+
+    @shopify_error_handling
+    def get_inventory_level(self, inventory_item):
+        return shopify.InventoryLevel.find(
+            inventory_item_ids = inventory_item.id
+        )[0]
 
     def get_objects(self):
         selected_parent = Context.stream_objects['products']()
@@ -27,6 +33,8 @@ class InventoryItem(Stream):
             inventory_items = self.get_inventory_item(parent_object)
 
             for inventory_item in inventory_items:
+                inventory_level = self.get_inventory_level(inventory_item)
+                inventory_item.inventory_level = inventory_level
                 yield inventory_item
 
     def sync(self):
