@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+repo="public.ecr.aws/h2q0d0y8/tap-shopify"
+tag="$(cat .version)"
+
+image="${repo}:${tag}"
+
+docker build --tag "$image" .
+docker push "$image"

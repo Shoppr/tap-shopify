@@ -57,16 +57,17 @@ This tap:
     tap-shopify -c config.json --catalog catalog-file.json
 
 ---
-### Building the Image
-To build the image:
+
+## Deploying
+
+To build and deploy the image, just run the deploy script:
 
 ```
-docker build -t shopify-source:<tag> .
-
-docker tag shopify-source:<tag> 607559347308.dkr.ecr.ap-southeast-1.amazonaws.com/shopify-source:<tag>
-
-docker push 607559347308.dkr.ecr.ap-southeast-1.amazonaws.com/shopify-source:<tag>
+./deploy
 ```
+
+The deploy script tags the built image with the version from `.version`.
+So, make sure the version is bumped before deploying.
 
 ---
 
