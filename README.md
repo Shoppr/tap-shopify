@@ -57,5 +57,17 @@ This tap:
     tap-shopify -c config.json --catalog catalog-file.json
 
 ---
+### Building the Image
+To build the image:
+
+```
+docker build -t shopify-source:<tag> .
+
+docker tag shopify-source:<tag> 607559347308.dkr.ecr.ap-southeast-1.amazonaws.com/shopify-source:<tag>
+
+docker push 607559347308.dkr.ecr.ap-southeast-1.amazonaws.com/shopify-source:<tag>
+```
+
+---
 
 Copyright &copy; 2019 Stitch
