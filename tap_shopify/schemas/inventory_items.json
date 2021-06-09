@@ -62,39 +62,6 @@
         "null",
         "string"
       ]
-    },
-    "inventory_level": {
-      "type": "object",
-      "properties": {
-        "inventory_item_id": {
-          "type": [
-            "null",
-            "integer"
-          ]
-        },
-        "location_id": {
-          "type": [
-            "null",
-            "integer"
-          ]
-        },
-        "available": {
-          "type": [
-            "null",
-            "integer"
-          ]
-        },
-        "admin_graphql_api_id": {
-          "type": [
-            "null",
-            "string"
-          ]
-        },
-        "updated_at": {
-          "type": ["null", "string"],
-          "format": "date-time"
-        }
-      }
     }
   }
 }
