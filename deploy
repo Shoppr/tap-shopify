@@ -2,10 +2,12 @@
 
 set -xeuo pipefail
 
-repo="public.ecr.aws/h2q0d0y8/tap-shopify"
+registry="public.ecr.aws/h2q0d0y8"
+repo="${registry}/tap-shopify"
 tag="$(cat .version)"
-
 image="${repo}:${tag}"
+
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$registry"
 
 docker build --tag "$image" .
 docker push "$image"
